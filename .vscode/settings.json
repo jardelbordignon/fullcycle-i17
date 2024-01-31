@@ -1,0 +1,32 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.insertFinalNewline": "explicit",
+    "source.formatDocument": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+  "files.autoSave": "onFocusChange",
+  "material-icon-theme.activeIconPack": "nest",
+  "material-icon-theme.files.associations": {
+    "vitest.config.e2e.ts": "Vitest",
+    "*.error.ts": "Nest-filter",
+    "*.decorators.ts": "Nest-decorator",
+  },
+  "material-icon-theme.folders.associations": {
+    "cryptography": "Keys",
+    "infra": "Tools",
+    "repositories": "Database"
+  },
+  "rest-client.environmentVariables": {
+    "development": {
+      "goApiUrl": "http://localhost:8080"
+    },
+    // "homolog": {
+    //   "goApiUrl": "https://hml-server.com"
+    // },
+    // "production": {
+    //   "goApiUrl": "https://prd-server.com"
+    // }
+  }
+}

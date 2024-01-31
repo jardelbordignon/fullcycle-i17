@@ -1,0 +1,38 @@
+gerando o go.mod
+> go mod init github.com/jardelbordignon/fullcycle-i17/go-api
+
+quando adicionar um import rodar o comando
+> go mod tidy
+
+// criando o database no docker
+// docker exec -it <container_id> createdb -U postgres <database_name>
+>> docker exec -it postgres createdb -U postgres fullcycle_i17
+
+// criando o recurso para gerar uuid no postgres
+>> docker exec -it <container_id> psql -U postgres -d <database_name> -c 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
+>> docker exec -it postgres psql -U postgres -d fullcycle_i17 -c 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
+
+// criando uma tabela no banco de dados
+// docker exec -it <container_id> psql -U postgres -d <database_name> -c 'CREATE TABLE my_table (id SERIAL PRIMARY KEY, name VARCHAR(100));'
+
+// criando a tabela categories
+>> docker exec -it postgres psql -U postgres -d fullcycle_i17 -c 'CREATE TABLE categories (
+  id UUID DEFAULT uuid_generate_v4() NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id)
+);'
+
+// criando a tabela products
+>> docker exec -it postgres psql -U postgres -d fullcycle_i17 -c 'CREATE TABLE products (
+  id UUID DEFAULT uuid_generate_v4() NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  price NUMERIC(10,2) NOT NULL,
+  image_url varchar(255) NOT NULL,
+  category_id UUID NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (category_id) REFERENCES categories(id)
+);'
+
+// deletando uma tabela
+docker exec -it postgres psql -U postgres -d fullcycle_i17 -c 'DROP TABLE categories CASCADE'

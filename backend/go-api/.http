@@ -1,0 +1,64 @@
+# CATEGORIES
+
+POST {{goApiUrl}}/category
+Content-Type: application/json
+
+{
+    "name": "Category 2"
+}
+###
+
+GET {{goApiUrl}}/categories
+###
+
+GET {{goApiUrl}}/category/2a0d71fb-433f-4136-a806-e60968eda2b9
+###
+
+PUT {{goApiUrl}}/category/2796c814-a7cd-450f-b56d-07e22ae1ae0c
+Content-Type: application/json
+
+{
+    "name": "Category 3",
+}
+###
+
+DELETE {{goApiUrl}}/category/2796c814-a7cd-450f-b56d-07e22ae1ae0c
+###
+
+
+# PRODUCTS
+
+POST {{goApiUrl}}/product
+Content-Type: application/json
+
+{
+    "name": "Product 3",
+    "description": "Product 3 description",
+    "price": 100,
+    "image_url": "https://picsum.photos/200/300.jpg",
+    "category_id": "c7bcab6e-f624-41ac-a366-94a6c2a14d8f"
+}
+###
+
+GET {{goApiUrl}}/products
+###
+
+GET {{goApiUrl}}/product/1192bc6f-20c0-48cd-af20-8103d2a112d3
+###
+
+GET {{goApiUrl}}/product/category/c7bcab6e-f624-41ac-a366-94a6c2a14d8f
+###
+
+PUT {{goApiUrl}}/product/fb86c60f-f092-40d9-a4a3-1f0a959aeda5
+Content-Type: application/json
+
+{
+    "name": "Product 1",
+    "description": "Product 1 description",
+    "price": 100,
+    "image_url": "https://picsum.photos/200/300.jpg",
+    "category_id": "8f5a3077-2a87-4e8b-a52b-7105cbd79e0f"
+}
+###
+
+DELETE {{goApiUrl}}/product/1192bc6f-20c0-48cd-af20-8103d2a112d3
