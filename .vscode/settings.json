@@ -20,7 +20,8 @@
   },
   "rest-client.environmentVariables": {
     "development": {
-      "goApiUrl": "http://localhost:8080"
+      "goApiUrl": "http://localhost:8080",
+      "nestApiUrl": "http://localhost:4000",
     },
     // "homolog": {
     //   "goApiUrl": "https://hml-server.com"
