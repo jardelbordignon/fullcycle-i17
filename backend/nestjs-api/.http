@@ -1,7 +1,26 @@
+# AUTH
+# Extract access token from login response
+@authorization = Bearer {{login.response.body.access_token}}
+@product_id = {{get_products.response.body.$.[0].id}}
+@order_id = {{get_orders.response.body.$.[0].id}}
+
+# @name login 
+POST {{nestApiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@email.com",
+  "password": "john"
+}
+###
+
+
 # PRODUCTS
 
+# @name create_product
 POST {{nestApiUrl}}/products
 Content-Type: application/json
+Authorization: {{authorization}}
 
 {
   "name": "Product 1",
@@ -11,34 +30,47 @@ Content-Type: application/json
 }
 ###
 
+# @name get_products
 GET {{nestApiUrl}}/products
 ###
 
-GET {{nestApiUrl}}/products/ebe6893c-e9fd-48ad-a4fc-7c5935e764d4
+# @name get_product
+GET {{nestApiUrl}}/products/{{product_id}}
 ###
 
-PATCH {{nestApiUrl}}/products/ebe6893c-e9fd-48ad-a4fc-7c5935e764d4
+# @name update_product
+PATCH {{nestApiUrl}}/products/{{product_id}}
 Content-Type: application/json
 
 {
-  "name": "Product 1"
+  "name": "Product 1 update"
 }
 ###
 
-DELETE {{nestApiUrl}}/products/ebe6893c-e9fd-48ad-a4fc-7c5935e764d4
+# @name delete_product
+DELETE {{nestApiUrl}}/products/{{product_id}}
 ###
 
 # ORDERS
 
+# @name get_orders
 GET {{nestApiUrl}}/orders
+Authorization: {{authorization}}
 ###
 
+# @name get_order
+GET {{nestApiUrl}}/orders/{{order_id}}
+Authorization: {{authorization}}
+###
+
+# @name create_order
 POST {{nestApiUrl}}/orders
 Content-Type: application/json
+Authorization: {{authorization}}
 
 {
   "card_hash": "4242424242424242",
-  "items_": [
+  "items": [
     {
       "product_id": "7cd3253f-64d8-4980-9439-172a2eb704cd",
       "quantity": 2

@@ -36,15 +36,15 @@ export class OrdersService extends PrismaService {
     return this.order.create({ data })
   }
 
-  findAll() {
-    return this.order.findMany()
+  findAll(client_id: string) {
+    return this.order.findMany({ orderBy: { created_at: 'desc' }, where: { client_id } })
   }
 
-  findOne(id: string) {
-    return this.order.findUnique({ where: { id } })
+  findOne(id: string, client_id: string) {
+    return this.order.findUnique({ where: { client_id, id } })
   }
 
-  update(id: string, data: Prisma.OrderUpdateInput) {
-    return this.order.update({ data, where: { id } })
+  update(id: string, client_id: string, data: Prisma.OrderUpdateInput) {
+    return this.order.update({ data, where: { client_id, id } })
   }
 }
