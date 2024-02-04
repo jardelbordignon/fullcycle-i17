@@ -5,7 +5,7 @@ import {
   UsePipes,
   applyDecorators,
 } from '@nestjs/common'
-import { ZodError, ZodObject, ZodSchema, ZodType, z } from 'zod'
+import { ZodError, ZodSchema, ZodType, z } from 'zod'
 
 type ZodObj<T extends Record<PropertyKey, unknown>> = {
   [key in keyof T]: ZodType<T[key]>
@@ -16,8 +16,10 @@ type ZodObj<T extends Record<PropertyKey, unknown>> = {
  *
  * const myZodObj = zodObject<ObjType>({ name: z.string() })
  */
-function zodObject<T extends Record<PropertyKey, unknown>>(schema: ZodObj<T>) {
-  return schema as ZodObject<ZodObj<T>>
+function zodObject<T extends Record<PropertyKey, unknown>>(
+  schema: ZodObj<T>
+): ZodSchema<T> {
+  return z.object(schema) as unknown as ZodSchema<T>
 }
 
 class ZodValidationError extends BadRequestException {
@@ -66,7 +68,7 @@ class ZodValidationPipe implements PipeTransform {
         throw new ZodValidationError(error.errors)
       }
 
-      throw new BadRequestException('Validation failed')
+      throw new BadRequestException('Zod Validation failed:', error.message)
     }
   }
 }
