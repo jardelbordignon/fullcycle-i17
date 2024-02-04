@@ -1,11 +1,13 @@
+# PRODUCTS
+
 POST {{nestApiUrl}}/products
 Content-Type: application/json
 
 {
-    "name": "Product 1",
-    "description": "Product 1 description",
-    "price": 100,
-    "image_url": "https://picsum.photos/200/300.jpg"
+  "name": "Product 1",
+  "description": "Product 1 description",
+  "price": 100,
+  "image_url": "https://picsum.photos/200/300.jpg"
 }
 ###
 
@@ -19,8 +21,32 @@ PATCH {{nestApiUrl}}/products/ebe6893c-e9fd-48ad-a4fc-7c5935e764d4
 Content-Type: application/json
 
 {
-    "name": "Product 1"
+  "name": "Product 1"
 }
 ###
 
 DELETE {{nestApiUrl}}/products/ebe6893c-e9fd-48ad-a4fc-7c5935e764d4
+###
+
+# ORDERS
+
+GET {{nestApiUrl}}/orders
+###
+
+POST {{nestApiUrl}}/orders
+Content-Type: application/json
+
+{
+  "card_hash": "4242424242424242",
+  "items_": [
+    {
+      "product_id": "7cd3253f-64d8-4980-9439-172a2eb704cd",
+      "quantity": 2
+    },
+    {
+      "product_id": "ef22e214-ca37-41ad-845a-c0af412ed592",
+      "quantity": 1
+    }
+  ]
+}
+###

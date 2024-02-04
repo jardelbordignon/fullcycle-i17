@@ -11,13 +11,45 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(uuid())
+  id          String      @id @default(uuid())
   name        String
   description String
   image_url   String
   price       Float
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  OrderItem   OrderItem[]
 
   @@map("products")
+}
+
+enum OrderStatus {
+  pending
+  paid
+  failed
+}
+
+model Order {
+  id        String      @id @default(uuid())
+  client_id String
+  total     Float
+  status    OrderStatus @default(pending)
+  items     OrderItem[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id         String   @id @default(uuid())
+  quantity   Int
+  price      Float
+  order_id   String
+  order      Order?   @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  product_id String
+  product    Product? @relation(fields: [product_id], references: [id], onDelete: NoAction)
+
+  @@map("order_items")
 }
