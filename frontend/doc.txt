@@ -1,1 +1,4 @@
 npx create-next-app nextjs --typescript --use-pnpm
+
+# https://mui.com/material-ui/guides/nextjs/
+pnpm add @mui/material @mui/material-nextjs @emotion/react @emotion/styled @emotion/cache

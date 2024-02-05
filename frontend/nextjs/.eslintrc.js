@@ -40,7 +40,7 @@ module.exports = {
         pathGroups: [
           {
             group: 'external',
-            pattern: 'contracts/**',
+            pattern: '^(next)(?:/.*)?$',
             position: 'after',
           },
           {
