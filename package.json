@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "web": "cd frontend/nextjs && pnpm dev",
+    "go": "cd backend/go && go run main.go",
+    "nest": "cd backend/nestjs && pnpm dev"
+  }
+}

@@ -35,7 +35,9 @@ export function MuiProvider({ children }: MyThemeProviderProps) {
   return (
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
       <ThemeContext.Provider value={contextValue}>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <>{children}</>
+        </ThemeProvider>
       </ThemeContext.Provider>
     </AppRouterCacheProvider>
   )

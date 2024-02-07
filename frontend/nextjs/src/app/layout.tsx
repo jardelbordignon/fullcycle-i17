@@ -1,6 +1,8 @@
+import { Box } from '@mui/material'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+import { Navbar } from '@/components'
 import { Providers } from '@/providers'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -18,7 +20,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar />
+          <Box
+            component="main"
+            sx={{
+              bgcolor: 'background.default',
+              flexGrow: 1,
+              mt: ['122px', '135px', '146px'],
+              p: 3,
+            }}>
+            {children}
+          </Box>
+        </Providers>
       </body>
     </html>
   )

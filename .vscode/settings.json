@@ -12,6 +12,7 @@
     "vitest.config.e2e.ts": "Vitest",
     "*.error.ts": "Nest-filter",
     "*.decorators.ts": "Nest-decorator",
+    "*.action.ts": "Nest-resolver",
   },
   "material-icon-theme.folders.associations": {
     "cryptography": "Keys",
